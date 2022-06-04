@@ -1,0 +1,18 @@
+I wrote it using ESP-IDF version 4.3, so I don't know if other versions work too. 
+The installation instructions and downloads are here: https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/get-started/index.html
+
+Space in the S Projects can be a problem for uploding -> the code is in the desktop
+
+cd C:\Users\rajar\OneDrive\Desktop\ESPCode20sensors
+
+cd "C:\Users\rajar\OneDrive\Documents\S Projects\Maximilian\Codes\gesture-esp"
+idf.py flash -p COM4 -b 115200
+idf.py monitor -p COM4
+
+
+
+• Build configuration: idf.py menuconfig
+• Compiling the ESP32 program: idf.py build
+• Flashing: idf.py flash -p <device> -b <baudrate>
+• Monitoring serial output: idf.py monitor -p <device>
+or alternatively: stty -F <device> raw 115200; cat <device>

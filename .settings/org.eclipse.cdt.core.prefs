@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.toolChain.596836199/append=true
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.toolChain.596836199/appendContributed=true
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.toolChain.596836199/sys._base_executable/delimiter=;
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.toolChain.596836199/sys._base_executable/operation=replace
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.toolChain.596836199/sys._base_executable/value=C\:\\esp\\Espressif\\tools\\idf-python\\3.8.7\\python.exe
