@@ -454,18 +454,22 @@ void create_result_string(int64_t timestamp) {
         for(i = 0; i < NUM_CHANNELS; i++) {
             int Z = Z_values[i];
             if(Z <= 0 || Z > 1000000) {// set this to 500000
-                 ptr += sprintf(ptr, "0,");//remove comments
+                 ptr += sprintf(ptr, "0");//remove comments
             } else {
                  //ptr += sprintf(ptr, "%d,", Z);//remove comments
-                 ptr += sprintf(ptr, "%d,",(int)round(kalman_predict(m_kf_r[i],(float)(Z))));//remove comments
+                 ptr += sprintf(ptr, "%d",(int)round(kalman_predict(m_kf_r[i],(float)(Z))));//remove comments
             }
+            if(i != 9)
+            {
+                 ptr += sprintf(ptr, ",");
+            }  
         }
     #endif
     #ifdef LSM6_ADDR
        //ptr += sprintf(ptr, "%f,%f,%f,", xl.x*(convert_g_to_ms2), xl.y*(convert_g_to_ms2), xl.z*(convert_g_to_ms2));
        //ptr += sprintf(ptr, "%f,%f,%f,", gy.x*(convert_g_to_ms2), gy.y*(convert_g_to_ms2), gy.z*(convert_g_to_ms2));
-       ptr += sprintf(ptr, "%d,%d,%d,", (int)kalman_predict(m_kf_acc[0],xl.x*(convert_g_to_ms2)), (int)kalman_predict(m_kf_acc[1],xl.y*(convert_g_to_ms2)), (int)kalman_predict(m_kf_acc[2],xl.z*(convert_g_to_ms2)));
-       ptr += sprintf(ptr, "%d,%d,%d,", (int)kalman_predict(m_kf_gyr[0],gy.x*(convert_g_to_ms2)), (int)kalman_predict(m_kf_gyr[1],gy.y*(convert_g_to_ms2)), (int)kalman_predict(m_kf_gyr[2],gy.z*(convert_g_to_ms2)));
+       //ptr += sprintf(ptr, "%d,%d,%d,", (int)kalman_predict(m_kf_acc[0],xl.x*(convert_g_to_ms2)), (int)kalman_predict(m_kf_acc[1],xl.y*(convert_g_to_ms2)), (int)kalman_predict(m_kf_acc[2],xl.z*(convert_g_to_ms2)));
+       //ptr += sprintf(ptr, "%d,%d,%d,", (int)kalman_predict(m_kf_gyr[0],gy.x*(convert_g_to_ms2)), (int)kalman_predict(m_kf_gyr[1],gy.y*(convert_g_to_ms2)), (int)kalman_predict(m_kf_gyr[2],gy.z*(convert_g_to_ms2)));
         const FusionVector gyroscope = {(float)gy.x,(float)gy.y,(float)gy.z};
         const FusionVector accelerometer = {(float)xl.x,(float)xl.y,(float)xl.z};
         FusionAhrsUpdateNoMagnetometer(&ahrs, gyroscope, accelerometer, SAMPLE_PERIOD);
@@ -475,7 +479,7 @@ void create_result_string(int64_t timestamp) {
     #endif
     #ifdef LIS2_ADDR
        //ptr += sprintf(ptr, "%f,%f,%f", mag.x*(convert_g_to_ms2), mag.y*(convert_g_to_ms2), mag.z*(convert_g_to_ms2));
-       ptr += sprintf(ptr, "%d,%d,%d", (int)kalman_predict(m_kf_mag[0],mag.x*(convert_g_to_ms2)), (int)kalman_predict(m_kf_mag[1],mag.y*(convert_g_to_ms2)), (int)kalman_predict(m_kf_mag[2],mag.z*(convert_g_to_ms2)));
+       //ptr += sprintf(ptr, "%d,%d,%d", (int)kalman_predict(m_kf_mag[0],mag.x*(convert_g_to_ms2)), (int)kalman_predict(m_kf_mag[1],mag.y*(convert_g_to_ms2)), (int)kalman_predict(m_kf_mag[2],mag.z*(convert_g_to_ms2)));
     #endif
 }
 
