@@ -19,8 +19,6 @@
 
 
 #define convert_g_to_ms2 9.80665f
-#define frequency_hz     50
-#define interval_ms      (1000/(frequency_hz+1))
 
 ////////////////////////////////////////////////////
 //////// VARIABLE DEFINITIONS
@@ -34,10 +32,6 @@ static unsigned long last_interval_ms = 0;
 FusionAhrs ahrs;
 
 static float kalman_predict(KalmanFilter kalman_obj, float value);
-static int R_elim[10] = {0,1,1,0,0,1,1,0,0,0};
-static int R_treshold[10] = {0,180000,185000,0,0,185000,180000,0,0,0};
-// static int R_min[10] = {0,190000,190000,190000,0,180000,180000,0,0,0};
-// static int R_max[10] = {0,200000,230000,200000,0,190000,200000,0,0,0};
 
 // Impedance measurement
 #ifdef AD5933_ADDR
@@ -486,11 +480,7 @@ void create_result_string(int64_t timestamp) {
 void print_info() {
     if(!PRINT_INTERVAL) return;
     if(PRINT_INTERVAL > 1 && loop_counter % PRINT_INTERVAL) return;
-    if(esp_timer_get_time() > (last_interval_ms + interval_ms) )
-    {
-        last_interval_ms = esp_timer_get_time();
-        printf("%s\n", results);//add /n
-    }
+    printf("%s\n", results);//add /n
 }
 
 void gesture_loop ()  {
